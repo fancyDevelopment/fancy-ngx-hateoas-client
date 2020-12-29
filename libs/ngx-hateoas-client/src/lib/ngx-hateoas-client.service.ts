@@ -9,7 +9,7 @@ export class NgxHateoasClient {
 
   private hateoasClient: HateoasClient;
 
-  constructor(public requestManager: RequestManager, public socketManager: SocketManager) { 
+  constructor(public requestManager: RequestManager, public socketManager: SocketManager) {
     this.hateoasClient = new HateoasClient(this.requestManager, this.socketManager);
   }
 

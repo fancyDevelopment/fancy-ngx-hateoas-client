@@ -10,7 +10,7 @@ import { NgxRequestManager } from './ngx-request-manager';
   ],
   exports: []
 })
-export class HateoasClientModule { 
+export class HateoasClientModule {
   public static forRoot(): ModuleWithProviders<HateoasClientModule> {
     return {
       ngModule: HateoasClientModule,
@@ -18,6 +18,6 @@ export class HateoasClientModule {
         { provide: RequestManager, useClass: NgxRequestManager },
         { provide: SocketManager, useClass: SignalRSocketManager }
       ]
-    }
+    };
   }
 }
