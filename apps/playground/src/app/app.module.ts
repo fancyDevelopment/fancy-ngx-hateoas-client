@@ -3,12 +3,11 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HateoasClientModule } from '@fancy/ngx-hateoas-client';
-import { HttpClientModule } from '@angular/common/http';
+import { HateoasClientModule } from 'fancy-ngx-hateoas-client';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [	
+  declarations: [
     AppComponent
    ],
   imports: [

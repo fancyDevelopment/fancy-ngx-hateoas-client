@@ -20,10 +20,10 @@
       "dom"
     ],
     "paths": {
-      "@fancy/hateoas-client": [
-        "../fancy-hateoas-client/src/index"
+      "fancy-hateoas-client": [
+        "../fancy-hateoas-client/"
       ],
-      "@fancy/ngx-hateoas-client": [
+      "fancy-ngx-hateoas-client": [
         "libs/ngx-hateoas-client/src/public-api"
       ]
     }

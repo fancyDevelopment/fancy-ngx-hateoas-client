@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HateoasClient, RequestManager, SocketManager } from '@fancy/hateoas-client';
-import { ResourceBase } from 'libs/hateoas-client/dist/resource';
+import { HateoasClient, ResourceBase, RequestManager, SocketManager } from 'fancy-hateoas-client';
 
 @Injectable({
   providedIn: 'root'

@@ -1,6 +1,6 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { RequestManager, SignalRSocketManager, SocketManager } from '@fancy/hateoas-client';
+import { RequestManager, SignalRSocketManager, SocketManager } from 'fancy-hateoas-client';
 import { NgxRequestManager } from './ngx-request-manager';
 
 @NgModule({

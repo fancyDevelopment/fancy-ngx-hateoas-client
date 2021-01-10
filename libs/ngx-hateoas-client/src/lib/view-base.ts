@@ -2,7 +2,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { ViewModelReloader } from './view-model-reloader';
 import { NgxHateoasClient } from './ngx-hateoas-client.service';
-import { ResourceBase } from '../../../../../fancy-hateoas-client/src/resource';
+import { ResourceBase } from 'fancy-hateoas-client';
 
 /**
  * Base class for angular components which represent a view and are backed by a hateoas resource.

@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { RequestManager } from '@fancy/hateoas-client';
+import { RequestManager } from 'fancy-hateoas-client';
 
 @Injectable()
 export class NgxRequestManager extends RequestManager {
