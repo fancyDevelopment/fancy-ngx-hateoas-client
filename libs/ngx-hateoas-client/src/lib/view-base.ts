@@ -1,23 +1,19 @@
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { ViewModelReloader } from './view-model-reloader';
-import { NgxHateoasClient } from './ngx-hateoas-client.service';
-import { ResourceBase } from 'fancy-hateoas-client';
+import { ResourceBase, HateoasClient } from 'fancy-hateoas-client';
+import { Directive } from '@angular/core';
 
 /**
  * Base class for angular components which represent a view and are backed by a hateoas resource.
  */
+@Directive()
 export abstract class ViewBase implements ViewModelReloader {
 
     /**
      * the url of the view model of this instance.
      */
     protected viewModelUrl: string | null = null;
-
-    /**
-     * The current view model.
-     */
-    protected viewModel: ResourceBase | ResourceBase[] | null = null;
 
     /**
      * A subject which gets triggered each time a new view model was loaded.
@@ -29,7 +25,12 @@ export abstract class ViewBase implements ViewModelReloader {
      */
     public viewModelLoaded = this.viewModelLoadedSubject.asObservable();
 
-    constructor(protected activatedRoute: ActivatedRoute, protected hateoasClient: NgxHateoasClient) {
+    /**
+     * The current view model.
+     */
+    public viewModel: ResourceBase | ResourceBase[] | null = null;
+
+    constructor(protected activatedRoute: ActivatedRoute, protected hateoasClient: HateoasClient) {
         // Subscribe to current url and load corresponding view model
         this.activatedRoute.params.subscribe(params => {
             this.viewModelUrl = params.url;

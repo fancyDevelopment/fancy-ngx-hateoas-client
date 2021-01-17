@@ -1,9 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
 import { RequestManager } from 'fancy-hateoas-client';
 
-@Injectable()
-export class NgxRequestManager extends RequestManager {
+/**
+ * A special angular implementation for the RequestManager using angulars HttpClient.
+ */
+export class AngularRequestManager extends RequestManager {
 
     constructor(private httpClient: HttpClient) {
         super();

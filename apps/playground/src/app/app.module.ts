@@ -7,7 +7,7 @@ import { HateoasClientModule } from 'fancy-ngx-hateoas-client';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [
+  declarations: [			
     AppComponent
    ],
   imports: [

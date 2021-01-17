@@ -1,7 +1,10 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
-import { RequestManager, SignalRSocketManager, SocketManager } from 'fancy-hateoas-client';
-import { NgxRequestManager } from './ngx-request-manager';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HateoasClient, RequestManager, SignalRSocketManager, SocketManager } from 'fancy-hateoas-client';
+import { AngularRequestManager } from './angular-request-manager';
+
+export function requestManagerFactory (httpClient: HttpClient) { return new AngularRequestManager(httpClient); }
+export function hateoasClientFactory (rm: RequestManager, sm: SocketManager) { return new HateoasClient(rm, sm); }
 
 @NgModule({
   declarations: [],
@@ -15,8 +18,20 @@ export class HateoasClientModule {
     return {
       ngModule: HateoasClientModule,
       providers: [
-        { provide: RequestManager, useClass: NgxRequestManager },
-        { provide: SocketManager, useClass: SignalRSocketManager }
+        { 
+          provide: RequestManager, 
+          useFactory: requestManagerFactory,
+          deps: [HttpClient]
+        },
+        { 
+          provide: SocketManager, 
+          useClass: SignalRSocketManager 
+        },
+        { 
+          provide: HateoasClient, 
+          useFactory: hateoasClientFactory,
+          deps: [RequestManager, SocketManager]
+        }
       ]
     };
   }
