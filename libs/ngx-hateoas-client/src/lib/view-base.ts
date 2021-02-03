@@ -2,13 +2,13 @@ import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { ViewModelReloader } from './view-model-reloader';
 import { ResourceBase, HateoasClient } from 'fancy-hateoas-client';
-import { Directive } from '@angular/core';
+import { Component, Directive } from '@angular/core';
 
 /**
  * Base class for angular components which represent a view and are backed by a hateoas resource.
  */
 @Directive()
-export abstract class ViewBase implements ViewModelReloader {
+export abstract class TypedViewBase<TViewModel> implements ViewModelReloader {
 
     /**
      * the url of the view model of this instance.
@@ -28,7 +28,7 @@ export abstract class ViewBase implements ViewModelReloader {
     /**
      * The current view model.
      */
-    public viewModel: ResourceBase | ResourceBase[] | null = null;
+    public viewModel: TViewModel | null = null;
 
     constructor(protected activatedRoute: ActivatedRoute, protected hateoasClient: HateoasClient) {
         // Subscribe to current url and load corresponding view model
@@ -45,7 +45,7 @@ export abstract class ViewBase implements ViewModelReloader {
         if (this.viewModelUrl) {
             const fetchPromise = this.hateoasClient.fetch(this.viewModelUrl);
             fetchPromise.then(data => {
-                this.viewModel = data;
+                this.viewModel = data as TViewModel;
                 this.viewModelOnLoaded();
                 this.viewModelLoadedSubject.next(data);
             });
@@ -60,5 +60,12 @@ export abstract class ViewBase implements ViewModelReloader {
      */
     viewModelOnLoaded(): void {
         // Empty default implementation
+    }
+}
+
+@Directive()
+export abstract class ViewBase extends TypedViewBase<any> {
+    constructor(activatedRoute: ActivatedRoute, hateoasClient: HateoasClient) {
+        super(activatedRoute, hateoasClient)
     }
 }
