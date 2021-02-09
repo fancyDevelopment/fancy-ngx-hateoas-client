@@ -1,10 +1,10 @@
 {
   "name": "fancy-ngx-hateoas-client",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "peerDependencies": {
     "@angular/common": "^11.0.5",
     "@angular/core": "^11.0.5",
-    "fancy-hateoas-client": "0.0.2"
+    "fancy-hateoas-client": "0.0.3"
   },
   "dependencies": {
     "tslib": "^2.0.0"
