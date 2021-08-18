@@ -17,16 +17,20 @@ export class AngularRequestManager extends RequestManager {
             securityToken = await this._tokenProvider.retrieveCurrentToken();
         }
         
-        let requestPromise = new Promise(resolve => {
+        let requestPromise = new Promise((resolve, reject) => {
             let headers = new HttpHeaders().set('Content-Type', 'application/json');
 
             if(securityToken) {
                 headers = headers.set('Authorization', 'Bearer ' + securityToken);
             }
 
-            this._httpClient.request(method, url, { body, headers }).subscribe(response => {
-                resolve(response);
-            });
+            this._httpClient.request(method, url, { body, headers }).subscribe({ 
+                next: response => {
+                    resolve(response); 
+                },
+                error: response => {
+                    reject(response);
+                } });
         });
 
         return await requestPromise;

@@ -4,7 +4,7 @@
   "peerDependencies": {
     "@angular/common": "^11.0.5",
     "@angular/core": "^11.0.5",
-    "fancy-hateoas-client": "0.0.3"
+    "fancy-hateoas-client": "0.0.5"
   },
   "dependencies": {
     "tslib": "^2.0.0"
