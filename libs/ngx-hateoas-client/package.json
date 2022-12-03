@@ -2,8 +2,8 @@
   "name": "fancy-ngx-hateoas-client",
   "version": "0.0.6",
   "peerDependencies": {
-    "@angular/common": ">= 11.0.5",
-    "@angular/core": ">= 11.0.5",
+    "@angular/common": ">= 13.0.0",
+    "@angular/core": ">= 13.0.0",
     "fancy-hateoas-client": "0.0.6"
   },
   "dependencies": {
