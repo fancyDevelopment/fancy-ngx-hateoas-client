@@ -1,16 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { HateoasClient } from 'fancy-ngx-hateoas-client';
+import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
+  standalone: true,
   selector: 'app-root',
+  imports: [CommonModule, RouterLink, RouterOutlet],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'playground';
-
-  constructor(private hateoasClient: HateoasClient) {}
-
-  ngOnInit() {
-  }
 }
