@@ -19,7 +19,7 @@
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0",
-    "fancy-hateoas-client": "0.0.7-alpha-8"
+    "fancy-hateoas-client": "0.0.8"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^16.1.1",
