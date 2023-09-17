@@ -6,7 +6,8 @@
     "@angular/core": "^16.1.0"
   },
   "dependencies": {
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.0",
+    "fancy-hateoas-client": "^0.0.8"
   },
   "sideEffects": false
 }
