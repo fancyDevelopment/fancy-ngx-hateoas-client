@@ -42,6 +42,8 @@ export class AngularRequestManager extends RequestManager {
                 // Need to redirect to sign in 
                 const currentUrl = window.location.href;
                 window.location.href = '/login?redirectUrl=' + encodeURIComponent(currentUrl);
+            } else {
+                throw errorResponse;
             }
         }
     }
