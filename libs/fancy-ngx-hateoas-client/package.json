@@ -1,9 +1,9 @@
 {
   "name": "fancy-ngx-hateoas-client",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "peerDependencies": {
-    "@angular/common": "^16.1.0",
-    "@angular/core": "^16.1.0",
+    "@angular/common": "^17.1.0",
+    "@angular/core": "^17.1.0",
     "fancy-hateoas-client": "^0.0.8"
   },
   "dependencies": {
