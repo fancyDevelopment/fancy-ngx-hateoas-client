@@ -2,6 +2,8 @@ import { inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { RequestManager, SecurityTokenProvider } from "fancy-hateoas-client";
 import { firstValueFrom } from 'rxjs';
+import { AngularRequestManagerOptions } from './provide';
+import { Router } from '@angular/router';
 
 /**
  * A special angular implementation for the RequestManager using angulars HttpClient.
@@ -10,6 +12,11 @@ export class AngularRequestManager extends RequestManager {
 
     private _httpClient = inject(HttpClient) 
     private _tokenProvider = inject(SecurityTokenProvider, { optional: true});
+    private _router = inject(Router);
+
+    constructor(private options: AngularRequestManagerOptions) {
+        super();
+    }
 
     protected async request(method: 'GET' | 'PUT' | 'POST' | 'DELETE', url: string, body?: any): Promise<any> {
         let securityToken: string | null = null
@@ -39,9 +46,7 @@ export class AngularRequestManager extends RequestManager {
             return response;
         } catch(errorResponse: any) {
             if(errorResponse.status === 401) {
-                // Need to redirect to sign in 
-                const currentUrl = window.location.href;
-                window.location.href = '/login?redirectUrl=' + encodeURIComponent(currentUrl);
+                this.options.onUnauthorizedAction(this._router);
             } else {
                 throw errorResponse;
             }

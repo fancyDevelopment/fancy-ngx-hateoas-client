@@ -1,6 +1,7 @@
 import { EnvironmentProviders, Provider, inject, makeEnvironmentProviders } from "@angular/core";
 import { AxiosRequestManager, HateoasClient, RequestManager, SignalRSocketManager } from "fancy-hateoas-client";
 import { AngularRequestManager } from "./angular-request-manager";
+import { Router } from "@angular/router";
 
 export enum HateoasClientFeatureKind {
     AxiosRequestManager,
@@ -12,6 +13,18 @@ export interface HateoasClientFeature {
     providers: Provider[];
 }
 
+export interface AngularRequestManagerOptions {
+    onUnauthorizedAction: (router: Router) => void;
+}
+
+const defaultAngularRequestManagerOptions: AngularRequestManagerOptions = {
+    onUnauthorizedAction: () => {
+        // Redirect to sign in 
+        const currentUrl = window.location.href;
+        window.location.href = '/login?redirectUrl=' + encodeURIComponent(currentUrl);
+    }
+};
+ 
 export function withAxiosRequestManager(): HateoasClientFeature {
     return {
         kind: HateoasClientFeatureKind.AxiosRequestManager,
@@ -24,13 +37,16 @@ export function withAxiosRequestManager(): HateoasClientFeature {
     }
 }
 
-export function withAngularRequestManager(): HateoasClientFeature {
+export function withAngularRequestManager(options?: Partial<AngularRequestManagerOptions>): HateoasClientFeature {
+    if(!options) {
+        options = {};
+    }
     return {
         kind: HateoasClientFeatureKind.AngularRequestManager,
         providers: [
             {
                 provide: RequestManager,
-                useFactory: () => new AngularRequestManager()
+                useFactory: () => new AngularRequestManager({...defaultAngularRequestManagerOptions, ...options})
             }
         ]
     }
